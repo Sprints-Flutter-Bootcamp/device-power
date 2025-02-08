@@ -32,6 +32,6 @@
     <th>My location to Cairo</th>
   </tr>
   <tr>
-    <td><img src="my-gallery-4.jpeg" alt="My Location to Cairo" width="600"></td>
+    <td><img src="my-location.jpeg" alt="My Location to Cairo" width="600"></td>
   </tr>
 </table>
