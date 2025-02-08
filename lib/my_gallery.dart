@@ -15,7 +15,7 @@ class MyGallery extends StatefulWidget {
 }
 
 class _MyGalleryState extends State<MyGallery> {
-  List<File> _images = []; // List of stored images
+  List<File> _images = [];
 
   @override
   void initState() {
@@ -24,13 +24,13 @@ class _MyGalleryState extends State<MyGallery> {
     loadImages();
   }
 
-  // Request permissions for camera and gallery
   Future<void> requestPermissions() async {
     await Permission.camera.request();
     await Permission.photos.request();
   }
 
-  // Load saved images from SharedPreferences
+  // Gallery functions ----------------------------------------------------------
+
   Future<void> loadImages() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String>? savedPaths = prefs.getStringList("gallery_images");
@@ -38,15 +38,13 @@ class _MyGalleryState extends State<MyGallery> {
     if (savedPaths != null) {
       setState(() {
         _images = savedPaths
-            .where(
-                (path) => File(path).existsSync()) // Filter non-existent files
+            .where((path) => File(path).existsSync())
             .map((path) => File(path))
             .toList();
       });
     }
   }
 
-// Gallery functions ----------------------------------------------------------
   Future<void> saveImages() async {
     final prefs = await SharedPreferences.getInstance();
     final List<String> paths = _images.map((file) => file.path).toList();
@@ -89,7 +87,6 @@ class _MyGalleryState extends State<MyGallery> {
     });
     saveImages();
   }
-  // --------------------------------------------------------------------------
 
   void showImagePicker() {
     showModalBottomSheet(
@@ -130,6 +127,8 @@ class _MyGalleryState extends State<MyGallery> {
       ),
     );
   }
+
+  // --------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {

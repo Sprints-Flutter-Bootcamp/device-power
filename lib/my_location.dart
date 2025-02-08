@@ -82,7 +82,7 @@ class _MyLocationState extends State<MyLocation> {
 
     // Get the current location
     Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+      desiredAccuracy: LocationAccuracy.medium,
     );
 
     // Construct the Google Maps navigation URL
